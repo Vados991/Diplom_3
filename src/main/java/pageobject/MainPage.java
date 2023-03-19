@@ -26,47 +26,47 @@ public class MainPage {
         driver.get(BASE_URL);
         return this;
     }
-    @Step("Click on Войти в аккаунт button")
+    @Step("Клик по кнопке Войти в аккаунт")
     public LoginPage clickAccountButton() {
         driver.findElement(enterAccountButtonMain).click();
         return new LoginPage(driver);
     }
 
-    @Step("Click on Личный Кабинет button by unauthorized user")
+    @Step("Клик по кнопке Личный кабинет неавторизованным пользователем")
     public LoginPage clickProfileButton() {
         driver.findElement(profileManeButton).click();
         return new LoginPage(driver);
     }
 
-    @Step("Click on Личный Кабинет by authorized user")
+    @Step("Клик по кнопке Личный кабинет авторизованным пользователем")
     public ProfilePage clickProfileButtonFromAuthorizedUser() {
         driver.findElement(profileManeButton).click();
         return new ProfilePage(driver);
     }
 
-    @Step("Check main page is open from authorized user")
+    @Step("Утверждение, что открыта Главная страница после авторизации")
     public boolean isManePageOpen() {
         return driver.findElement(makeOrderButton).isDisplayed();
     }
 
-    @Step("Switch on Bun section")
+    @Step("Переключить на раздел Булочки")
     public MainPage clickMenuBun() {
         driver.findElement(menuBun).click();
         return this;
     }
 
-    @Step("Switch on Sauce section")
+    @Step("Переключить на раздел Соусы")
     public MainPage clickMenuSauce() {
         driver.findElement(menuSauce).click();
         return this;
     }
 
-    @Step("Switch on Fillings section")
+    @Step("Переключить на раздел Начинки")
     public MainPage clickMenuFillings() {
         driver.findElement(menuFillings).click();
         return this;
     }
-    @Step("Check current section")
+    @Step("Проверка текущего раздела")
     public String getTextFromSelectedMenu() {
         return driver.findElement(currentMenu).getText();
     }

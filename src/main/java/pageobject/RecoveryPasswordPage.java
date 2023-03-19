@@ -10,13 +10,13 @@ public class RecoveryPasswordPage {
     public RecoveryPasswordPage(WebDriver driver) {
         this.driver = driver;
     }
-    @Step("Open recovery page")
+    @Step("Открыть страницу восстановления")
     public RecoveryPasswordPage openRecoveryPage() {
         driver.get(RECOVERY_PASSWORD_URL);
         return this;
     }
 
-    @Step("Click on Вход button from recovery page")
+    @Step("Клик на кнопку Восстановить")
     public LoginPage clickEnterButtonOnRecoveryPage() {
         driver.findElement(enterButtonOnRecoverPage).click();
         return new LoginPage(driver);

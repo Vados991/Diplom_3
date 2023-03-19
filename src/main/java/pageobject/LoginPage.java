@@ -19,24 +19,24 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    @Step("Open login Page")
+    @Step("Открыть страницу входа")
     public LoginPage openLoginPage() {
         driver.get(LOGIN_PAGE_URL);
         return this;
     }
 
-    @Step("Click on registration button")
+    @Step("Клик на кнопку регистрации")
     public RegisterPage clickRegisterButtonLoginPage() {
         driver.findElement(registerButtonFromLogin).click();
         return new RegisterPage(driver);
     }
 
-    @Step("Click on Вход button on login page")
+    @Step("Клик на кнопку Вход на странице входа")
     public MainPage clickLoginEnterButton() {
         driver.findElement(loginEnterButton).click();
         return new MainPage(driver);
     }
-    @Step("Fill the authorization form")
+    @Step("Заполнить форму авторизации")
     public LoginPage authorizationFromLoginPage(String email, String password) {
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(LOGIN_PAGE_URL));
         driver.findElement(loginEmail).click();

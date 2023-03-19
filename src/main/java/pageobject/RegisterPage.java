@@ -18,45 +18,45 @@ public class RegisterPage {
         this.driver = driver;
     }
 
-    @Step("Open register page")
+    @Step("Открыть страницу регистрации")
     public RegisterPage openRegisterPage() {
         driver.get(REGISTER_PAGE_URL);
         return this;
     }
 
-    @Step("Enter name on register page")
+    @Step("Ввести имя на странице регистрации")
     public RegisterPage enterRegisterName(String name) {
         driver.findElement(registerName).click();
         driver.findElement(registerName).sendKeys(name);
         return this;
     }
-    @Step("Enter email on register page")
+    @Step("Ввести э-мейл на странице регистрации")
     public RegisterPage enterRegisterEmail(String email) {
         driver.findElement(registerEmail).click();
         driver.findElement(registerEmail).sendKeys(email);
         return this;
     }
 
-    @Step("Enter password on register page")
+    @Step("Ввести пароль на странице регистрации")
     public RegisterPage enterRegisterPassword(String password) {
         driver.findElement(registerPassword).click();
         driver.findElement(registerPassword).sendKeys(password);
         return this;
     }
 
-    @Step("Click on Зарегистрироваться button on register page")
+    @Step("Клик на кнопку Зарегистрироваться")
     public LoginPage clickRegistrationButton() {
         driver.findElement(registrationButton).click();
         return new LoginPage(driver);
     }
 
-    @Step("Click on Вход button on register page")
+    @Step("Клик на кнопку Вход после регистрации")
     public LoginPage clickEnterButtonOnRegistrationPage() {
         driver.findElement(enterButtonOnRegistrationPage).click();
         return new LoginPage(driver);
     }
 
-    @Step("Register new user with credentials. Fill forms")
+    @Step("Регистрация нового пользователя с новыми данными")
     public RegisterPage registerNewUser(User user) {
         driver.findElement(registerName).click();
         driver.findElement(registerName).sendKeys(user.getName()); //ввести имя
