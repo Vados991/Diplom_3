@@ -1,29 +1,37 @@
 package org.example;
-import constant.Constants;
-import io.restassured.response.Response;
-
+import io.qameta.allure.Step;
+import io.restassured.response.ValidatableResponse;
+import static constant.Constants.*;
 import static io.restassured.RestAssured.given;
-
-public class RequestCreateUser {
-
-    public static Response createUser(User user) {
-        return given()
-                .header("Content-Type", "application/json")
+public class RequestCreateUser extends Client{
+    @Step("Create new user in system")
+    public ValidatableResponse createUser(User user) {
+        return given().log().all()
+                .spec(getSpec())
                 .body(user)
-                .post(Constants.CREATE_NEW_USER);
+                .when()
+                .post(CREATE_NEW_USER)
+                .then();
     }
 
-    public static Response authUser(User user) {
-        return given()
-                .header("Content-Type", "application/json")
-                .body(user)
-                .post(Constants.LOGIN_USER);
+    @Step("Login user in system with email and password")
+    public ValidatableResponse loginUser(AuthorizationData authorizationData) {
+        return given().log().all()
+                .spec(getSpec())
+                .body(authorizationData)
+                .when()
+                .post(LOGIN_USER)
+                .then();
     }
 
-    public static Response deleteUser(String authToken) {
-        String AuthRoute = Constants.USER_AUTH;
-        return given()
-                .header("Authorization", authToken)
-                .delete(AuthRoute);
+    @Step("Delete user by token")
+    public void deleteUser(String accessToken) {
+        given().log().all()
+                .spec(getSpec())
+                .auth().oauth2(accessToken)
+                .when()
+                .delete(USER_AUTH)
+                .then();
     }
+
 }
